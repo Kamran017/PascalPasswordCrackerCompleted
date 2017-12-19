@@ -1,0 +1,322 @@
+//pt->password type
+//ct->character type
+//pv->password variable
+//cv->character variable
+//cp->create password
+//rv->random variable
+program passwordProgram;
+uses sysutils;
+var password: string;
+    finded:string;
+    passwordType:array[1..100]of string;
+    characterType:array[1..100]of string;
+    pt,ct,pv,cv,cp,rv,r,min,max:integer;
+    j,k,l,m,n,jj,kk,ll:char;
+    w:integer;
+    Start,Stop:TDateTime;
+    //rs:string;
+    dgt:array[1..8]of integer;//=('1','2','3','4','5','6','7','8','9');
+    //lwc: array [1..26] of string = ('a', 'b', 'c', 'd' , 'e', 'f', 'g ','h','i ','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+    //bth:array[1..61] of string=('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a', 'b', 'c', 'd' , 'e', 'f', 'g ','h','i ','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9');
+begin
+Randomize;
+  //declare elements of passwordType array
+  passwordType[1]:='1: weak(4)';
+  passwordType[2]:='2: medium(6)';
+  passwordType[3]:='3: strong(8)';
+  //declare elements of characterType array
+  characterType[1]:='1: only digit';
+  characterType[2]:='2: only lowercase letters';
+  characterType[3]:='3: both lowercase letters and digits';
+  characterType[4]:='4: lowercase letters, digits and uppercase letters';
+  //user select the password type
+  writeln('Please select the password type:');
+  writeln();
+  //writeln() password types
+  for pv:=1  to 3 do
+   begin
+     writeln(passwordType[pv])
+   end;
+  //read password type
+  writeln();
+  readln(pt);
+  writeln();
+
+  //user enter the character type
+  writeln('Please select the character type:');
+  writeln();
+  for cv:=1  to 4 do
+   begin
+     writeln(characterType[cv])
+   end;
+  writeln();
+  readln(ct);
+  writeln();
+  //ask user for creating password
+  writeln('If you want to create password enter 1, otherwise enter 2');
+  writeln();
+  readln(cp);
+  writeln();
+  //create password
+  if cp=1 then
+   begin
+     if pt=1 then
+      begin
+        if ct=1 then
+         begin
+           readln(password);
+         end
+        else if ct=2 then
+         begin
+           readln(password);
+         end
+        else if ct=3 then
+         begin
+           readln(password);
+         end
+      end
+     else if pt=2 then
+      begin
+        if ct=1 then
+         begin
+           readln(password);
+         end
+        else if ct=2 then
+         begin
+           readln(password);
+         end
+        else if ct=3 then
+         begin
+           readln(password);
+         end
+        else if ct=4 then
+         begin
+           readln(password);
+         end;
+      end
+     else if pt=3 then
+      begin
+        if ct=1 then
+         begin
+           readln(password);
+         end
+        else if ct=2 then
+         begin
+           readln(password);
+         end
+        else if ct=3 then
+         begin
+           readln(password);
+         end
+        else if ct=4 then
+         begin
+           readln(password);
+         end;
+      end
+   end
+  //Creating random password
+  else if cp=2 then
+   begin
+    if pt=1 then
+     begin
+      if ct=1 then
+       begin
+         for rv:=1 to 4 do
+          begin
+            r:=random(10);
+            dgt[rv]:=r;
+            write(r);
+          end;
+       end
+     else if ct=2 then
+       begin
+         for rv:=1 to 4 do
+          begin
+            min:=97;
+            max:=122;
+            r:=random((max-min)+1)+min;
+            write(char(r))
+          end;
+       end
+     else if ct=3 then
+       begin
+         for rv:=1 to 4 do
+          begin
+            min:=97;
+            max:=122;
+            r:=random((max-min)+1)+min;
+            write(char(r))
+          end;
+       end
+     else if ct=4 then
+       begin
+         for rv:=1 to 4 do
+          begin
+            min:=65;
+            max:=90;
+            r:=random((max-min)+1)+min;
+            write(char(r))
+          end;
+       end ;
+
+     end;
+   end;
+   // program start
+   Start := Now;
+  //Find the password
+  w:=0;
+  if ct=1 then
+    begin
+     while finded<>password do
+      begin
+       if length(password)=4 then
+         begin
+          for j:='0' to '9' do
+           begin
+             if finded=password then
+             break;
+             for k:='0' to '9' do
+              begin
+               if finded=password then
+                break;
+                for l:='0' to '9' do
+                 begin
+                  if finded=password then
+                    break;
+                  for m:='0' to '9' do
+                   begin
+                     if finded=password then
+                      break;
+                    finded:=char(j)+char(k)+char(l)+char(m);
+                    write(finded);
+                    w:=w+1;
+                   end;
+                 end;
+               end;
+             end;
+           end
+    else if length(password)=6 then
+    begin
+      for j:='0' to '9' do
+       begin
+         if finded=password then
+          break;
+         for k:='0' to '9' do
+         begin
+          if finded=password then
+           break;
+           for l:='0' to '9' do
+            begin
+             if finded=password then
+               break;
+             for m:='0' to '9' do
+              begin
+               if finded=password then
+                break;
+                 for jj:='0' to '9' do
+                  begin
+                   if finded=password then
+                    break;
+                   for kk:='0' to '9' do
+                    begin
+                     if finded=password then
+                      break;
+                     finded:=char(j)+char(k)+char(l)+char(m)+char(jj)+char(kk);
+                     write(finded);
+                     w:=w+1;
+                    end;
+                  end;
+              end;
+            end;
+        end;
+       end;
+    end
+    else if length(password)=8 then
+                begin
+                 for j:='0' to '9' do
+                  begin
+                    if finded=password then
+                    break;
+                    for k:='0' to '9' do
+                     begin
+                      if finded=password then
+                       break;
+                       for l:='0' to '9' do
+                        begin
+                         if finded=password then
+                           break;
+                         for m:='0' to '9' do
+                          begin
+                            if finded=password then
+                             break;
+                            for n:='0' to '9' do
+                             begin
+                               if finded=password then
+                                break;
+                               for jj:='0' to '9' do
+                                begin
+                                 if finded=password then
+                                  break;
+                                 for kk:='0' to '9' do
+                                  begin
+                                   if finded=password then
+                                    break;
+                                   for ll:='0' to '9' do
+                                    begin
+                                     finded:=char(j)+char(k)+char(l)+char(m);
+                                     write(finded);
+                                     w:=w+1;
+                                    end;
+                                  end;
+                                end;
+                             end;
+                          end;
+                        end;
+                      end;
+                    end;
+                  end
+     end;
+    end
+  else if  ct=2 then
+    begin
+       while finded<>password do
+        begin
+           for j:='a' to 'z' do
+            begin
+             if finded=password then
+              break;
+              for k:='a' to 'z' do
+               begin
+                if finded=password then
+                 break;
+                for l:='a' to 'z' do
+                 begin
+                  if finded=password then
+                   for m:='a' to 'z' do
+                    begin
+                     if finded=password then
+                      break;
+                     finded:=char(j)+char(k)+char(l)+char(m);
+                     write(finded);
+                     w:=w+1;
+                    end;
+                 end;
+               end;
+            end;
+        end;
+    end;
+
+  Sleep(1000);
+  Stop := Now; // program end
+  writeln();
+  writeln('Finded password equal to :', finded);
+  writeln();
+  writeln('Attempt:' ,w);
+  writeln();
+  writeln(FormatDateTime('hh.nn.ss.zzz', Stop-Start), '  time taken');
+
+
+
+
+readln();
+end.
